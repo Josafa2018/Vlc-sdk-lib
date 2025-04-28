@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 android {
     compileSdkVersion Integer.valueOf(project.properties.get("compileSdkVersion"))
 //    buildToolsVersion project.properties.get("buildToolsVersion")
@@ -88,3 +89,16 @@ dependencies {
 //    website = 'https://github.com/mengzhidaren/Vlc-sdk-lib'   // 项目的主页
 //}
 //
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'com.yyl.vlc'
+            artifactId = 'vlc-android-sdk'
+            version = '3.3.0'
+
+            afterEvaluate {
+                from components.release
+            }
+        }
+    }
+}
